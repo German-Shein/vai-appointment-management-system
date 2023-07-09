@@ -55,8 +55,10 @@ Your application should lunch on http://localhost:3000
 
 MongoDB cluster is online and available for this application.
 
-What's left:
-
+I have completed 90% of the outlined project. Database and back-end were set up, but front-end was not completed up to the specs. Overall, it took me 18 actual hours to complete this assignment. There are still some things left:
 1. Finish the front-end functionality for managing appointments
 2. Improve the user experience
 3. Adding CAPTCHA
+4. Writing tests
+
+My suggestion is to specify whether the focus should be on creatinge a functional product or demonstration the tech stack expertise.
