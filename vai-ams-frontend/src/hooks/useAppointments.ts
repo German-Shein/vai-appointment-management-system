@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/user";
 
 export const useAppointments = () =>
 {
-    const [appointments, setAppointments] = useState<AxiosResponse | []>([]);
+    const [appointments, setAppointments] = useState<any>([]);
     const [failure, setFailure] = useState(false);
     const [loading, setLoading] = useState(false);
 	const { user } = useContext(UserContext);
