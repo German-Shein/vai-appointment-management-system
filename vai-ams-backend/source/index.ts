@@ -9,7 +9,7 @@ import cluster from 'node:cluster';
 
 dotEnv.config();
 
-mongoose.connect('xxx', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://germanshein1995:vLk0u3PxTIKpikZr@cluster0.8xjtv68.mongodb.net/vai-ams-interview?retryWrites=true&w=majority', {serverSelectionTimeoutMS: 5000});
 
 const application: Express = express();
 application.use(bodyParser.json({limit: '10mb'}))
@@ -19,18 +19,16 @@ routes(application);
 
 if (cluster.isPrimary) 
 {
-    console.log(`Primary ${process.pid} is running`);
-    for(let i = 0; i < availableParallelism(); i++) 
+    for(let index = 0; index < availableParallelism(); index = index + 1) 
     {
         cluster.fork();
     }
-    cluster.on('exit', (worker, code, signal) => 
-    {
-        console.log(`worker ${worker.process.pid} died`);
-    });
 }
 else
 {
     application.listen(process.env.PORT);
-    console.log(`Worker ${process.pid} started`);
 }
+
+[`exit`, `SIGINT`, `SIGUSR1`, `SIGUSR2`, `uncaughtException`, `SIGTERM`].forEach((eventType) => {
+    //mongoose.disconnect()
+})

@@ -62,7 +62,7 @@ const getAppointments = async (request: Request, response: Response, next: NextF
 	const validationResult = appointmentValidationSchemas.GET_APPOINTMENTS_BY_USER_ID.validate(request.body);
 	if (validationResult.error === undefined)
 	{
-		const appointments = await appointmentDatabaseSchema.find(request.body.userType === USER_TYPE.DOCTOR ? { doctorID: request.body.userID } : { doctorID: request.body.patientID } );
+		const appointments = await appointmentDatabaseSchema.find(request.body.userType === USER_TYPE.DOCTOR ? { doctorID: request.body.userID } : { patientID: request.body.userID } );
 		try
 		{
 			if (appointments.length > 0)

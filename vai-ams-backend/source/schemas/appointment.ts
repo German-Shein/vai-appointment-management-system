@@ -12,12 +12,12 @@ export const appointmentValidationSchemas =
     CREATE_APPOINTMENT: Joi.object().keys({
         patientID: Joi.string().required(),
         doctorID: Joi.string().required(),
-        timeSlot: Joi.date().timestamp().required(),
+        timeSlot: Joi.date().required(),
         status: Joi.string().required().valid(APPOINTMENT_STATUS.ATTENDED, APPOINTMENT_STATUS.CANCELLED, APPOINTMENT_STATUS.DRAFT, APPOINTMENT_STATUS.SCHEDULED)
     }).required(),
     UPDATE_APPOINTMENT: Joi.object().keys({
         id: Joi.string().required(),
-        timeSlot: Joi.date().timestamp(),
+        timeSlot: Joi.date(),
         status: Joi.string().valid(APPOINTMENT_STATUS.ATTENDED, APPOINTMENT_STATUS.CANCELLED, APPOINTMENT_STATUS.DRAFT, APPOINTMENT_STATUS.SCHEDULED)
     }).required(),
     DELETE_APPOINTMENT: Joi.string().required(),

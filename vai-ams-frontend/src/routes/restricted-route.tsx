@@ -8,7 +8,7 @@ type Props =
 	redirectionPath?: string;
 };
 
-const RestrictedRoute = ({ children, redirectionPath = '/authentication' }: Props): JSX.Element => 
+const RestrictedRoute = ({ children, redirectionPath = '/profile' }: Props): JSX.Element => 
 {
 	const userContext = useContext(UserContext);
 	const user = userContext.user;

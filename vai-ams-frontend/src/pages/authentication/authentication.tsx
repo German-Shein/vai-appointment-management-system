@@ -28,22 +28,20 @@ const Authentication = () =>
 
 	const logIn = async () =>
 	{
-		/*if (email === '' || password === '')
-		{
-			return;
-		}*/
-		setUser({id: 'a', email: 'b', token: 'c', userType: 'd'});
-		navigate('/profile');
-		/*const user = await authenticationAPI.logIn({email, password});
-		if (user.code !== 200)
+		if (email === '' || password === '')
 		{
 			return;
 		}
-		setUser(user.data);
-		if (user.code === 200)
+		const response = (await authenticationAPI.logIn({email, password})).data;
+		if (response.status !== 200)
+		{
+			return;
+		}
+		setUser({id: response.data.user._id, email: response.data.user.email, token: response.data.token, userType: response.data.user.userType});
+		if (response.status === 200)
 		{
 			navigate('/profile');
-		}*/
+		}
 	}
 
 	const register = async () =>
@@ -52,8 +50,16 @@ const Authentication = () =>
 		{
 			return;
 		}
-		setUser({id: 'a', email: 'b', token: 'c', userType: 'd'});
-		navigate('/profile');
+		const response = (await authenticationAPI.register({email, password, userType})).data;
+		if (response.status !== 201)
+		{
+			return;
+		}
+		setUser({id: response.data.user._id, email: response.data.user.email, token: response.data.token, userType: response.data.user.userType});
+		if (response.status === 201)
+		{
+			navigate('/profile');
+		}
 	}
 
 	return (

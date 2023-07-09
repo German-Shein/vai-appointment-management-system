@@ -21,6 +21,7 @@ const logIn = async (request: Request, response: Response, next: NextFunction) =
                 if (await bcrypt.compare(request.body.password, user.password as string))
                 {
                     const token = jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET as string, { expiresIn: '1h' });
+					delete user.password;
                     (response as ResponseWithResult).result = 
                     {
                         data: {user, token: token},
@@ -91,10 +92,11 @@ const register = async (request: Request, response: Response, next: NextFunction
 			{
                 request.body.password = await bcrypt.hash(request.body.password, randomInt(5, 50));
                 const user = await authenticationDatabaseSchema.create(request.body);
+				delete request.body.password;
                 const token = jwt.sign({ _id: user._id, email: user.email }, process.env.SECRET as string, { expiresIn: '1h' });
 				(response as ResponseWithResult).result = 
 				{
-					errorMessage: {user, token},
+					data: {user, token},
 					message: responseMessages.SUCCESS.AUTHENTICATION.USER_REGISTERED,
 					status: responseCodes.CREATED
 				};

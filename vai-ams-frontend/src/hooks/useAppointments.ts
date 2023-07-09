@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { appointmentAPI } from "../api/appointment";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/user";
@@ -15,7 +14,7 @@ export const useAppointments = () =>
 		try
 		{
 			setLoading(true);
-			const response = await appointmentAPI.getAppointments({userID: user.id, userType: user.userType});
+			const response = (await appointmentAPI.getAppointments({userID: user.id, userType: user.userType}, user.token)).data.data;
 			setAppointments(response);
 		}
 		catch (errorObject)
