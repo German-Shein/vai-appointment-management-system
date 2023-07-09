@@ -32,6 +32,16 @@ It was built using TypeScript and the MERN Stack:
 - React v18.2.0
 - Node.js v14.21.0
 
+Additionally, the following libraries and packages were used:
+
+- Axios
+- Mongoose
+- Nodemon
+- React Router
+- bcrypt
+- jsonwebtoken
+- react-simple-captcha (**although it was scrapped due to issues with TypeScript**)
+
 How to run:
 
 1. cd vai-ams-backend
@@ -42,3 +52,11 @@ How to run:
 6. npm run
 
 Your application should lunch on http://localhost:3000
+
+MongoDB cluster is online and available for this application.
+
+What's left:
+
+1. Finish the front-end functionality for managing appointments
+2. Improve the user experience
+3. Adding CAPTCHA
